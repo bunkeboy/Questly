@@ -58,6 +58,14 @@ export const generateDailyPlan = async (req: AuthenticatedRequest, res: Response
     const user = req.user!;
     const { date } = req.body;
     
+    // Ensure user has required fields for task generation
+    if (!user.commissionGoal || user.commissionGoal === 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please set your commission goal first in your profile settings to generate daily tasks'
+      });
+    }
+    
     console.log(`🎯 Generating daily plan for user ${user.email}`);
     
     const planDate = date ? new Date(date) : new Date();

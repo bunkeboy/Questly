@@ -28,6 +28,8 @@ class ApiService {
     const headers = this.getHeaders();
 
     try {
+      console.log(`🔗 API Request: ${options.method || 'GET'} ${url}`);
+      
       const response = await fetch(url, {
         ...options,
         headers: {
@@ -39,13 +41,29 @@ class ApiService {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'API request failed');
+        console.error(`❌ API Error: ${response.status} - ${data.error || 'Unknown error'}`);
+        return {
+          success: false,
+          error: data.error || `HTTP ${response.status}: ${response.statusText}`
+        };
       }
 
-      return data;
+      return {
+        success: true,
+        data: data.data || data
+      };
     } catch (error) {
-      console.error('API request error:', error);
-      throw error;
+      console.error('💥 API request failed:', error);
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        return {
+          success: false,
+          error: 'Unable to connect to server. Please ensure the backend is running on port 5001.'
+        };
+      }
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'API request failed'
+      };
     }
   }
 

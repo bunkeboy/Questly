@@ -25,8 +25,8 @@ const GoalProgressSection: React.FC = () => {
     ? Math.min((currentClosings / goals.closingsNeeded) * 100, 100)
     : 0;
 
-  // Display "Infinity%" if no goal is set, otherwise show actual percentage
-  const displayPercentage = goals.annualGoal === 0 ? "Infinity" : Math.round(progressPercentage);
+  // Display "Set Goal" if no goal is set, otherwise show actual percentage
+  const displayValue = goals.annualGoal === 0 ? "Set Goal" : `${Math.round(progressPercentage)}%`;
 
   const metrics = [
     {
@@ -73,21 +73,21 @@ const GoalProgressSection: React.FC = () => {
               color: 'primary.main'
             }}
           >
-            {displayPercentage}%
+            {displayValue}
           </Typography>
         </Box>
         
         {/* Progress Bar */}
         <LinearProgress
           variant="determinate"
-          value={goals.annualGoal === 0 ? 100 : progressPercentage}
+          value={goals.annualGoal === 0 ? 0 : progressPercentage}
           sx={{
             height: 12,
             borderRadius: 6,
             bgcolor: 'grey.200',
             '& .MuiLinearProgress-bar': {
               borderRadius: 6,
-              bgcolor: 'success.main'
+              bgcolor: goals.annualGoal === 0 ? 'warning.main' : 'success.main'
             }
           }}
         />
