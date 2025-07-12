@@ -287,7 +287,7 @@ export const getTaskHistory = async (req: AuthenticatedRequest, res: Response) =
     const { days = 7 } = req.query;
     
     const history = [];
-    const daysToQuery = parseInt(String(days));
+    const daysToQuery = parseInt(days.toString());
     
     for (let i = 0; i < daysToQuery; i++) {
       const date = new Date();

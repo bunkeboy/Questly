@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import Pipeline, { IPipeline } from '../models/Pipeline';
 import Challenge from '../models/Challenge';
 import User, { IUser } from '../models/User';
+import metricsService from '../services/metricsService';
+import scoringService from '../services/scoringService';
 
 interface AuthenticatedRequest extends Request {
   user?: IUser;
@@ -181,38 +183,30 @@ export const getPipelineStats = async (req: AuthenticatedRequest, res: Response)
 
 // Helper function to calculate health scores
 async function calculateHealthScores(userId: string) {
-  const now = new Date();
-  const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
-  
-  // Get completed challenges in the last 30 days by category
-  const challenges = await Challenge.find({
-    userId,
-    completed: true,
-    completedAt: { $gte: thirtyDaysAgo }
-  });
-
-  const challengesByCategory = {
-    prospecting: challenges.filter(c => c.category === 'prospecting').length,
-    nurturing: challenges.filter(c => c.category === 'nurturing').length,
-    managing_clients: challenges.filter(c => c.category === 'managing_clients').length,
-    administrative: challenges.filter(c => c.category === 'administrative').length
-  };
-
-  // Calculate health scores based on activity (simplified algorithm)
-  const maxChallengesPerCategory = 10; // Assume 10 challenges per category in 30 days is "perfect"
-  
-  const prospectingScore = Math.min((challengesByCategory.prospecting / maxChallengesPerCategory) * 100, 100);
-  const nurturingScore = Math.min((challengesByCategory.nurturing / maxChallengesPerCategory) * 100, 100);
-  const managingClientsScore = Math.min((challengesByCategory.managing_clients / maxChallengesPerCategory) * 100, 100);
-  const administrativeScore = Math.min((challengesByCategory.administrative / maxChallengesPerCategory) * 100, 100);
-  
-  const overallScore = (prospectingScore + nurturingScore + managingClientsScore + administrativeScore) / 4;
-
-  return {
-    overall: Math.round(overallScore),
-    prospecting: Math.round(prospectingScore),
-    nurturing: Math.round(nurturingScore),
-    managingClients: Math.round(managingClientsScore),
-    administrative: Math.round(administrativeScore)
-  };
+  try {
+    // Get raw metrics from the metrics service
+    const rawMetrics = await metricsService.collectRawMetrics(userId);
+    
+    // Calculate health scores using the scoring service
+    const healthScores = scoringService.calculateAllScores(rawMetrics);
+    
+    return {
+      overall: healthScores.overall,
+      prospecting: healthScores.prospecting,
+      nurturing: healthScores.nurturing,
+      managingClients: healthScores.clientCare,
+      administrative: healthScores.administrative
+    };
+  } catch (error) {
+    console.error('Error calculating health scores:', error);
+    
+    // Fallback to default scores if metrics service fails
+    return {
+      overall: 50,
+      prospecting: 50,
+      nurturing: 50,
+      managingClients: 50,
+      administrative: 50
+    };
+  }
 } 

@@ -1,4 +1,4 @@
-import { UserProfile, Challenge, ApiResponse } from '../types';
+import { UserProfile, Challenge, ApiResponse, DailyPlan, DailyTask, TaskAnalytics, HealthScores, TaskHistory } from '../types';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
@@ -150,6 +150,56 @@ class ApiService {
 
   async getFubActivities(page: number = 1, limit: number = 50): Promise<ApiResponse<any>> {
     return this.request(`/fub/activities?page=${page}&limit=${limit}`);
+  }
+
+  // Daily Task endpoints
+  async getTodaysPlan(): Promise<ApiResponse<DailyPlan>> {
+    return this.request('/daily-tasks/today');
+  }
+
+  async generateDailyPlan(): Promise<ApiResponse<DailyPlan>> {
+    return this.request('/daily-tasks/generate', {
+      method: 'POST',
+    });
+  }
+
+  async completeTask(taskId: string): Promise<ApiResponse<{ task: DailyTask; gameState: any }>> {
+    return this.request(`/daily-tasks/${taskId}/complete`, {
+      method: 'POST',
+    });
+  }
+
+  async updateTaskProgress(taskId: string, progress: number): Promise<ApiResponse<{ task: DailyTask }>> {
+    return this.request(`/daily-tasks/${taskId}/progress`, {
+      method: 'PUT',
+      body: JSON.stringify({ progress }),
+    });
+  }
+
+  async swapTask(removeTaskId: string, addTaskId: string): Promise<ApiResponse<{ swappedOut: any; swappedIn: any; selectedTasks: DailyTask[] }>> {
+    return this.request('/daily-tasks/swap', {
+      method: 'POST',
+      body: JSON.stringify({ removeTaskId, addTaskId }),
+    });
+  }
+
+  async getTaskAnalytics(days: number = 30): Promise<ApiResponse<TaskAnalytics>> {
+    return this.request(`/daily-tasks/analytics?days=${days}`);
+  }
+
+  async getTaskHistory(days: number = 7): Promise<ApiResponse<{ history: TaskHistory[]; summary: any }>> {
+    return this.request(`/daily-tasks/history?days=${days}`);
+  }
+
+  async getStreakInfo(): Promise<ApiResponse<{ streak: any; performance: any }>> {
+    return this.request('/daily-tasks/streak');
+  }
+
+  async evaluateDailyCompletion(date?: Date): Promise<ApiResponse<{ message: string }>> {
+    return this.request('/daily-tasks/evaluate', {
+      method: 'POST',
+      body: JSON.stringify({ date }),
+    });
   }
 
   // Utility methods

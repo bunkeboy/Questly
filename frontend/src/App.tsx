@@ -35,27 +35,33 @@ const AppContent: React.FC = () => {
               } 
             />
             <Route 
+              path="/onboarding" 
+              element={
+                user ? <Navigate to="/dashboard" replace /> : <Onboarding />
+              } 
+            />
+            <Route 
               path="/dashboard" 
               element={
-                user ? <Dashboard /> : <Navigate to="/" replace />
+                user ? <Dashboard /> : <Navigate to="/onboarding" replace />
               } 
             />
             <Route 
               path="/challenges" 
               element={
-                user ? <Challenges /> : <Navigate to="/" replace />
+                user ? <Challenges /> : <Navigate to="/onboarding" replace />
               } 
             />
             <Route 
               path="/profile" 
               element={
-                user ? <Profile /> : <Navigate to="/" replace />
+                user ? <Profile /> : <Navigate to="/onboarding" replace />
               } 
             />
             <Route 
               path="/team" 
               element={
-                user ? <TeamDashboard /> : <Navigate to="/" replace />
+                user ? <TeamDashboard /> : <Navigate to="/onboarding" replace />
               } 
             />
           </Routes>

@@ -156,10 +156,19 @@ class DailyTaskService {
 
   // Step 2: Determine Track Status
   private determineTrackStatus(rawMetrics: any): 'Ahead' | 'On-Track' | 'Behind' {
-    const actualGCI = rawMetrics.userTargets.actualGCI || 0;
-    const targetGCI = rawMetrics.userTargets.targetGCI || 1;
+    // Add null checks for missing data
+    if (!rawMetrics || !rawMetrics.targets) {
+      console.warn('⚠️ Missing targets in rawMetrics, defaulting to On-Track');
+      return 'On-Track';
+    }
     
-    const paceRatio = actualGCI / targetGCI;
+    // Use available metrics to determine track status
+    const dailyLeadTarget = rawMetrics.targets.dailyLeadTarget || 1;
+    const actualLeads = rawMetrics.pipelineCounts?.totalLeads || 0;
+    const remainingWorkDays = rawMetrics.targets.remainingWorkDays || 252;
+    const expectedLeads = dailyLeadTarget * (252 - remainingWorkDays);
+    
+    const paceRatio = expectedLeads > 0 ? actualLeads / expectedLeads : 1;
     
     if (paceRatio >= 1.05) return 'Ahead';
     if (paceRatio >= 0.9) return 'On-Track';

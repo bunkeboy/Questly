@@ -199,4 +199,71 @@ export interface FubActivity {
   dealId?: string;
   createdAt: Date;
   completedAt?: Date;
+}
+
+// Daily Task System Types
+export interface DailyTask {
+  id: string;
+  title: string;
+  description: string;
+  category: 'prospecting' | 'nurturing' | 'clientCare' | 'administrative';
+  points: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+  completed: boolean;
+  completedAt?: Date;
+  progress?: number;
+  preSelected?: boolean;
+  source?: string;
+  estimatedDuration?: number;
+}
+
+export interface DailyPlan {
+  date: Date;
+  selectedTasks: DailyTask[];
+  candidateTasks: DailyTask[];
+  completedTasks: number;
+  completedPoints: number;
+  totalPossiblePoints: number;
+  trackStatus: 'on_track' | 'behind' | 'ahead';
+  gapAnalysis?: {
+    prospecting: number;
+    nurturing: number;
+    clientCare: number;
+    administrative: number;
+  };
+  lastUpdated: Date;
+}
+
+export interface TaskAnalytics {
+  avgCompletionRate: number;
+  avgPointsPerDay: number;
+  streakInfo: {
+    current: number;
+    longest: number;
+    lastCompletionDate?: Date;
+  };
+  categoryPerformance: {
+    prospecting: { completed: number; total: number; avgPoints: number };
+    nurturing: { completed: number; total: number; avgPoints: number };
+    clientCare: { completed: number; total: number; avgPoints: number };
+    administrative: { completed: number; total: number; avgPoints: number };
+  };
+}
+
+export interface HealthScores {
+  overall: number;
+  prospecting: number;
+  nurturing: number;
+  clientCare: number;
+  administrative: number;
+}
+
+export interface TaskHistory {
+  date: Date;
+  trackStatus: 'on_track' | 'behind' | 'ahead';
+  completedTasks: number;
+  completedPoints: number;
+  totalTasks: number;
+  totalPoints: number;
+  completionRate: string;
 } 
