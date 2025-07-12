@@ -1,0 +1,650 @@
+{
+  "prospecting": [
+    {
+      "id": "add-web-leads",
+      "title": "Add {target} new web leads",
+      "category": "prospecting",
+      "base_target": 10,
+      "unit": "leads",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.5,
+        "nurturing": 0.3,
+        "client_care": 0.1,
+        "admin": 0.1
+      },
+      "max_scale": 3,
+      "cooldown": 2
+    },
+    {
+      "id": "host-open-house",
+      "title": "Host {target} open house",
+      "category": "prospecting",
+      "base_target": 1,
+      "unit": "event",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.6,
+        "nurturing": 0.2,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 7
+    },
+    {
+      "id": "door-knock-homes",
+      "title": "Door-knock {target} homes",
+      "category": "prospecting",
+      "base_target": 20,
+      "unit": "doors",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.7,
+        "nurturing": 0.2,
+        "client_care": 0.1,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    },
+    {
+      "id": "cold-call-prospects",
+      "title": "Make {target} cold calls",
+      "category": "prospecting",
+      "base_target": 15,
+      "unit": "calls",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.6,
+        "nurturing": 0.3,
+        "client_care": 0.1,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "networking-events",
+      "title": "Attend {target} networking events",
+      "category": "prospecting",
+      "base_target": 1,
+      "unit": "events",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.5,
+        "nurturing": 0.3,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 3
+    },
+    {
+      "id": "social-media-posts",
+      "title": "Create {target} social media posts",
+      "category": "prospecting",
+      "base_target": 3,
+      "unit": "posts",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.4,
+        "nurturing": 0.3,
+        "client_care": 0.2,
+        "admin": 0.1
+      },
+      "max_scale": 4,
+      "cooldown": 1
+    },
+    {
+      "id": "referral-requests",
+      "title": "Request {target} referrals",
+      "category": "prospecting",
+      "base_target": 5,
+      "unit": "requests",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.6,
+        "nurturing": 0.4,
+        "client_care": 0.0,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 7
+    },
+    {
+      "id": "expired-listing-calls",
+      "title": "Call {target} expired listings",
+      "category": "prospecting",
+      "base_target": 8,
+      "unit": "calls",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.7,
+        "nurturing": 0.2,
+        "client_care": 0.1,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    },
+    {
+      "id": "fsbo-contacts",
+      "title": "Contact {target} FSBO properties",
+      "category": "prospecting",
+      "base_target": 6,
+      "unit": "contacts",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.8,
+        "nurturing": 0.2,
+        "client_care": 0.0,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 2
+    },
+    {
+      "id": "sphere-touchpoints",
+      "title": "Reach out to {target} sphere contacts",
+      "category": "prospecting",
+      "base_target": 12,
+      "unit": "touchpoints",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.5,
+        "nurturing": 0.4,
+        "client_care": 0.1,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    }
+  ],
+  "nurturing": [
+    {
+      "id": "call-past-visitors",
+      "title": "Call {target} past open-house visitors",
+      "category": "nurturing",
+      "base_target": 8,
+      "unit": "calls",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.6,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 3
+    },
+    {
+      "id": "send-personal-cmas",
+      "title": "Send {target} personal CMAs",
+      "category": "nurturing",
+      "base_target": 5,
+      "unit": "CMAs",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.1,
+        "nurturing": 0.7,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 7
+    },
+    {
+      "id": "dm-sphere-contacts",
+      "title": "DM {target} social-sphere contacts",
+      "category": "nurturing",
+      "base_target": 10,
+      "unit": "DMs",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.3,
+        "nurturing": 0.5,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "follow-up-leads",
+      "title": "Follow up with {target} leads",
+      "category": "nurturing",
+      "base_target": 12,
+      "unit": "calls",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.6,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "email-newsletters",
+      "title": "Send {target} email newsletters",
+      "category": "nurturing",
+      "base_target": 1,
+      "unit": "newsletters",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.6,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 7
+    },
+    {
+      "id": "schedule-coffee-meetings",
+      "title": "Schedule {target} coffee meetings",
+      "category": "nurturing",
+      "base_target": 2,
+      "unit": "meetings",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.3,
+        "nurturing": 0.5,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 5
+    },
+    {
+      "id": "property-alerts",
+      "title": "Set up {target} property alerts",
+      "category": "nurturing",
+      "base_target": 4,
+      "unit": "alerts",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.1,
+        "nurturing": 0.6,
+        "client_care": 0.3,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 2
+    },
+    {
+      "id": "market-updates",
+      "title": "Send {target} market updates",
+      "category": "nurturing",
+      "base_target": 6,
+      "unit": "updates",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.6,
+        "client_care": 0.2,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "birthday-calls",
+      "title": "Make {target} birthday calls",
+      "category": "nurturing",
+      "base_target": 3,
+      "unit": "calls",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.5,
+        "client_care": 0.3,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 30
+    },
+    {
+      "id": "video-messages",
+      "title": "Send {target} personalized video messages",
+      "category": "nurturing",
+      "base_target": 4,
+      "unit": "videos",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.3,
+        "nurturing": 0.6,
+        "client_care": 0.1,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 2
+    }
+  ],
+  "client_care": [
+    {
+      "id": "schedule-showings",
+      "title": "Schedule {target} property showings",
+      "category": "client_care",
+      "base_target": 2,
+      "unit": "showings",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.2,
+        "client_care": 0.8,
+        "admin": 0.0
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "buyer-weekly-updates",
+      "title": "Send weekly update to all active buyers",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "email_groups",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.2,
+        "client_care": 0.8,
+        "admin": 0.0
+      },
+      "max_scale": 1,
+      "cooldown": 7
+    },
+    {
+      "id": "review-contingencies",
+      "title": "Review contingencies for pending deals",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "deals",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.8,
+        "admin": 0.2
+      },
+      "max_scale": 2,
+      "cooldown": 3
+    },
+    {
+      "id": "client-check-ins",
+      "title": "Call {target} clients for check-ins",
+      "category": "client_care",
+      "base_target": 5,
+      "unit": "calls",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.2,
+        "client_care": 0.8,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    },
+    {
+      "id": "buyer-consultations",
+      "title": "Complete {target} buyer consultations",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "consultations",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.3,
+        "client_care": 0.7,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 2
+    },
+    {
+      "id": "listing-presentations",
+      "title": "Conduct {target} listing presentations",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "presentations",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.2,
+        "client_care": 0.8,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 2
+    },
+    {
+      "id": "closing-coordination",
+      "title": "Coordinate {target} closings",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "closings",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.9,
+        "admin": 0.1
+      },
+      "max_scale": 2,
+      "cooldown": 7
+    },
+    {
+      "id": "home-inspections",
+      "title": "Attend {target} home inspections",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "inspections",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.9,
+        "admin": 0.1
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    },
+    {
+      "id": "client-events",
+      "title": "Host {target} client appreciation events",
+      "category": "client_care",
+      "base_target": 1,
+      "unit": "events",
+      "difficulty": 3,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.3,
+        "client_care": 0.5,
+        "admin": 0.0
+      },
+      "max_scale": 1,
+      "cooldown": 30
+    },
+    {
+      "id": "property-visits",
+      "title": "Visit {target} listed properties",
+      "category": "client_care",
+      "base_target": 3,
+      "unit": "visits",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.1,
+        "nurturing": 0.2,
+        "client_care": 0.7,
+        "admin": 0.0
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    }
+  ],
+  "admin": [
+    {
+      "id": "merge-duplicate-leads",
+      "title": "Merge {target} duplicate leads",
+      "category": "admin",
+      "base_target": 10,
+      "unit": "leads",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.1,
+        "client_care": 0.1,
+        "admin": 0.8
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "tag-untagged-contacts",
+      "title": "Tag {target} untagged contacts",
+      "category": "admin",
+      "base_target": 20,
+      "unit": "tags",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.2,
+        "client_care": 0.0,
+        "admin": 0.8
+      },
+      "max_scale": 3,
+      "cooldown": 1
+    },
+    {
+      "id": "archive-dead-deals",
+      "title": "Archive dead deals older than 12 months",
+      "category": "admin",
+      "base_target": 5,
+      "unit": "deals",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.0,
+        "admin": 1.0
+      },
+      "max_scale": 2,
+      "cooldown": 7
+    },
+    {
+      "id": "update-contact-info",
+      "title": "Update {target} contact information records",
+      "category": "admin",
+      "base_target": 15,
+      "unit": "contacts",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.2,
+        "client_care": 0.2,
+        "admin": 0.6
+      },
+      "max_scale": 2,
+      "cooldown": 2
+    },
+    {
+      "id": "backup-database",
+      "title": "Backup CRM database",
+      "category": "admin",
+      "base_target": 1,
+      "unit": "backup",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.0,
+        "admin": 1.0
+      },
+      "max_scale": 1,
+      "cooldown": 7
+    },
+    {
+      "id": "organize-documents",
+      "title": "Organize {target} client documents",
+      "category": "admin",
+      "base_target": 8,
+      "unit": "files",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.3,
+        "admin": 0.7
+      },
+      "max_scale": 2,
+      "cooldown": 2
+    },
+    {
+      "id": "update-listings",
+      "title": "Update {target} property listings",
+      "category": "admin",
+      "base_target": 3,
+      "unit": "listings",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.2,
+        "nurturing": 0.1,
+        "client_care": 0.4,
+        "admin": 0.3
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    },
+    {
+      "id": "expense-tracking",
+      "title": "Update expense tracking for {target} transactions",
+      "category": "admin",
+      "base_target": 5,
+      "unit": "entries",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.0,
+        "admin": 1.0
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    },
+    {
+      "id": "license-compliance",
+      "title": "Complete {target} compliance tasks",
+      "category": "admin",
+      "base_target": 2,
+      "unit": "tasks",
+      "difficulty": 2,
+      "impact_weights": {
+        "prospecting": 0.0,
+        "nurturing": 0.0,
+        "client_care": 0.0,
+        "admin": 1.0
+      },
+      "max_scale": 1,
+      "cooldown": 30
+    },
+    {
+      "id": "social-media-scheduling",
+      "title": "Schedule {target} social media posts",
+      "category": "admin",
+      "base_target": 7,
+      "unit": "posts",
+      "difficulty": 1,
+      "impact_weights": {
+        "prospecting": 0.3,
+        "nurturing": 0.3,
+        "client_care": 0.2,
+        "admin": 0.2
+      },
+      "max_scale": 2,
+      "cooldown": 1
+    }
+  ]
+} 
