@@ -9,12 +9,10 @@ import {
   Chip,
   LinearProgress
 } from '@mui/material';
-import { useTheme } from '../context/ThemeContext';
 import { HealthScores } from '../types';
 import apiService from '../services/api';
 
 const HealthDashboard: React.FC = () => {
-  const { themeConfig } = useTheme();
   const [healthScores, setHealthScores] = useState<HealthScores | null>(null);
   const [loading, setLoading] = useState(true);
 

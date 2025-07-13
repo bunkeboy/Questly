@@ -28,6 +28,7 @@ const TodaysChallenges: React.FC = () => {
 
   useEffect(() => {
     fetchTodaysPlan();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchTodaysPlan = async (forceRefresh = false) => {

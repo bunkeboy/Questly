@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import path from 'path';
 import { connectDB } from './config/database';
 import { errorHandler } from './middleware/errorHandler';
 import { notFound } from './middleware/notFound';
@@ -25,12 +26,24 @@ dotenv.config();
 const app: Express = express();
 const PORT = process.env.PORT || 5001;
 
+// Railway provides PORT dynamically, ensure we use it
+if (process.env.NODE_ENV === 'production' && !process.env.PORT) {
+  console.warn('⚠️  PORT environment variable not set in production. Railway should set this automatically.');
+}
+
 // Security middleware
 app.use(helmet());
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}));
+
+// CORS configuration for development and production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.FRONTEND_URL, process.env.RAILWAY_STATIC_URL].filter(Boolean) as string[]
+    : ['http://localhost:3000', 'http://localhost:3001'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -69,6 +82,17 @@ app.use('/api/fub', fubRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/daily-tasks', dailyTaskRoutes);
+
+// Serve static files from the React app in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+  app.use(express.static(frontendBuildPath));
+  
+  // The "catchall" handler: send back React's index.html file for any non-API requests
+  app.get('*', (req: Request, res: Response) => {
+    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  });
+}
 
 // Error handling middleware
 app.use(notFound);

@@ -10,7 +10,6 @@ import {
   Alert,
   Stack,
   Chip,
-  Divider,
   AppBar,
   Toolbar
 } from '@mui/material';
